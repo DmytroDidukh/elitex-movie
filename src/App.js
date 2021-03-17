@@ -1,43 +1,28 @@
-import React, {useRef, Fragment} from "react";
+import React, {useRef, Fragment, useState, useEffect} from "react";
 import Button from "@material-ui/core/Button";
 
-import {uploadImage, saveMovie} from "./db/api";
+import {uploadImage, saveMovie, getMovies} from "./db/api";
 import './App.css';
+import AddMovie from "./components/add-movie";
+import MovieList from "./components/movie-list";
 
 const App = () => {
-    const inputRef = useRef(null)
 
-    const handleChange = async (e) => {
-        e.preventDefault()
+    const [movies, setMovies] = useState([])
 
-        const file = e.target.files[0]
+    useEffect(() => {
+        (async () => {
+            const movies = await getMovies()
+            setMovies(movies)
+        })()
+    }, [])
 
-        if (file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/jpg') {
-            console.log('wrong file')
-            return
-        }
-
-        const gg = await uploadImage(file, file.name)
-        console.log(gg, 'filename')
-
-    }
 
 
   return (
     <div className="App">
-      <Fragment>
-        <input
-            className='upload-input'
-            onChange={handleChange}
-            type="file"
-            ref={inputRef}
-        />
-        <Button variant="contained"
-                color="secondary"
-                onClick={() => inputRef.current.click()}>
-          Upload image
-        </Button>
-      </Fragment>
+        <AddMovie />
+        <MovieList list={movies}/>
     </div>
   );
 }

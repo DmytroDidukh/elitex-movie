@@ -1,6 +1,8 @@
 import {db, storageRef} from "./db";
 
 export const saveMovie = (data) => {
+    console.log(data)
+
     db.collection("movies")
         .add(data)
         .catch((error) => console.error("Error adding document: ", error));
