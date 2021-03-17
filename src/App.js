@@ -1,7 +1,8 @@
 import React, {useRef, Fragment} from "react";
 import Button from "@material-ui/core/Button";
+
+import {uploadImage, saveMovie} from "./db/api";
 import './App.css';
-import {uploadImage} from "./db/api";
 
 const App = () => {
     const inputRef = useRef(null)
@@ -16,11 +17,11 @@ const App = () => {
             return
         }
 
-        console.dir(file)
-        console.log(file.name)
         const gg = await uploadImage(file, file.name)
-        console.log(gg)
+        console.log(gg, 'filename')
+
     }
+
 
   return (
     <div className="App">

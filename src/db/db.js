@@ -14,4 +14,4 @@ const config = {
 
 firebase.initializeApp(config);
 export const db = firebase.firestore();
-export const storageRef = firebase.storage().ref();
+export const storageRef = firebase.storage().ref('images');

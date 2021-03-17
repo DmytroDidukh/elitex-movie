@@ -42,16 +42,8 @@ export const checkMovieExist = async (movieTitle) => {
 
 export const uploadImage = async (file, fileName) => {
     try {
-        const imageRef = storageRef.child(fileName);
-
-        console.log(imageRef)
-
-        return imageRef
-            .put(file)
-            .then(res => {
-                console.log(res, '============')
-                res.ref.getDownloadUrl()
-            })
+        return storageRef.child(fileName).put(file)
+            .then(res => res.ref.getDownloadURL())
     } catch (e) {
         console.error(e)
     }
