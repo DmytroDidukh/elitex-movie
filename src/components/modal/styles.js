@@ -1,6 +1,6 @@
 import {makeStyles} from "@material-ui/core";
 
-export const useNewMovieFormStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
     dialog: {
         minWidth: 380,
         position: 'relative',
@@ -58,23 +58,4 @@ export const useNewMovieFormStyles = makeStyles((theme) => ({
     }
 }))
 
-export const useMovieItemDetailedStyles = makeStyles((theme) => ({
-    movieItem: {
-        width: '100%',
-        margin: 10,
-        display: 'flex',
-    },
-    movieImage: ({imgSrc}) => ({
-        width: 250,
-        minHeight: 400,
-        background: `url(${imgSrc}) center center no-repeat`,
-        backgroundSize: 'cover',
-        marginLeft: 0,
-        borderRadius: 10,
-        marginRight: 20
-    }),
-    movieDetails: {
-        flex: 1,
-        minWidth: 250,
-    }
-}))
+export default useStyles
