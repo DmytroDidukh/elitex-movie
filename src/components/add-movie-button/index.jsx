@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
 import Button from "@material-ui/core/Button";
+import AddIcon from '@material-ui/icons/Add';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 import NewMovieModal from "../new-movie-modal";
 import LoginModal from "../login-modal";
@@ -21,8 +23,9 @@ const AddMovieButton = ({setMovies}) => {
         <section className={classes.addMovieBlock}>
             <Button variant="contained"
                     color="primary"
+                    className={classes.button}
                     onClick={handleOpenModal}>
-                Add movie
+                <AddIcon/>
             </Button>
             {
                 currentUser ? (
@@ -31,7 +34,7 @@ const AddMovieButton = ({setMovies}) => {
                                 color="secondary"
                                 className={classes.button}
                                 onClick={logout}>
-                            Logout
+                            <ExitToAppIcon />
                         </Button>
                         <NewMovieModal
                             open={isModalOpen}

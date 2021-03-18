@@ -16,7 +16,9 @@ export const AuthProvider = ({ children }) => {
     }
 
     const logout = () => {
-        return auth.signOut()
+        if (window.confirm('Logout?')) {
+            return auth.signOut()
+        }
     }
 
     useEffect(() => {

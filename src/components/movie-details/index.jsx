@@ -6,12 +6,15 @@ import {
 } from "@material-ui/core";
 import DeleteIcon from '@material-ui/icons/Delete';
 
-import {useMovieItemDetailedStyles} from "./styles";
 import MovieItem from "../movie-item";
-
 import Modal from "../modal";
+import {useAuth} from "../../contexts/auth";
+
+import {useMovieItemDetailedStyles} from "./styles";
+
 
 const MovieDetails = ({open, handleClose, movie, deleteMovie}) => {
+    const {currentUser} = useAuth()
 
     return (
         <Modal
@@ -24,19 +27,22 @@ const MovieDetails = ({open, handleClose, movie, deleteMovie}) => {
                     useStyles={useMovieItemDetailedStyles}
                 >
                     {
-                        movie.description &&  <p>{movie.description}</p>
+                        movie.description && <p>{movie.description}</p>
                     }
                 </MovieItem>
             </DialogContent>
             <DialogActions>
-                <Button
-                    variant="contained"
-                    color="secondary"
-                    startIcon={<DeleteIcon />}
-                    onClick={() => deleteMovie(movie.id)}
-                >
-                    Delete
-                </Button>
+                {
+                    currentUser &&
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        startIcon={<DeleteIcon/>}
+                        onClick={() => deleteMovie(movie.id)}
+                    >
+                        Delete
+                    </Button>
+                }
                 <Button onClick={handleClose} variant="contained" color="default">
                     Close
                 </Button>
