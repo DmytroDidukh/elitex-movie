@@ -7,6 +7,9 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         margin: '50px 20px 10px 0',
     },
+    button: {
+        marginLeft: 10,
+    }
 }))
 
 export default useStyles

@@ -1,25 +1,28 @@
 import {makeStyles} from "@material-ui/core";
 
-const useNewMovieFormStyles = makeStyles((theme) => ({
-    movieForm: {
-        display: 'flex',
-        '@media (max-width: 768px)': {
-            flexDirection: 'column'
-        }
+const useLoginModalStyles = makeStyles(() => ({
+    error: {
+        color: "#ff0015",
+        backgroundColor: '#ffc5c56e',
+        border: '1px solid #ff0015',
+        borderRadius: 5,
+        padding: 5,
+        fontSize: '.8em'
     },
-    movieFormInputs: {
-        minWidth: 400,
-        '@media (max-width: 768px)': {
-            minWidth: '100%',
-        }
-    },
-    input: {
-        width: '100%',
-        margin: '20px 0',
-    },
-    inputTitle: ({shouldValidate, titleValue}) => ({
-        color: shouldValidate && !titleValue ? 'red' : 'black'
-    }),
+    header: {
+
+        width: 'fit-content',
+        '& > h6': {
+            display: 'inline',
+            borderBottom: '1px solid black',
+        },
+        '& span': {
+            color: '#797979',
+            fontStyle: 'italic',
+            marginLeft: '10px',
+            fontSize: '.7em'
+        },
+    }
 }))
 
-export default useNewMovieFormStyles
+export default useLoginModalStyles

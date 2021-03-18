@@ -1,20 +1,16 @@
 import {makeStyles} from "@material-ui/core";
 
-const useNewMovieFormStyles = makeStyles(() => ({
-
+const useLoginFormStyles = makeStyles(() => ({
     loginFormInputs: {
-        minWidth: 400,
+        width: 300,
         '@media (max-width: 768px)': {
             minWidth: '100%',
         }
     },
     input: {
         width: '100%',
-        margin: '20px 0',
+        margin: '15px 0',
     },
-    inputTitle: ({shouldValidate, titleValue}) => ({
-        color: shouldValidate && !titleValue ? 'red' : 'black'
-    }),
 }))
 
-export default useNewMovieFormStyles
+export default useLoginFormStyles

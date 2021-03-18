@@ -1,49 +1,45 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {
-    Button,
-    DialogActions, DialogContent,
     FormGroup,
     TextField,
-    Typography
 } from "@material-ui/core";
 
 import useLoginFormStyles from "./styles";
 
 const LoginForm = ({
-                       open,
-                       handleClose,
-                       shouldValidate,
                        emailValue,
-                       titleValue,
                        passwordValue,
+                       error,
                        setEmailValue,
                        setPasswordValue,
-                       onLogin,
-                       beforeClose
                    }) => {
 
-    const classes = useLoginFormStyles({shouldValidate, titleValue})
+    const classes = useLoginFormStyles()
 
     return (
         <div className={classes.loginFormInputs}>
             <FormGroup>
-                <TextField title='Email'
-                           placeholder='Enter email...'
-                           type='email'
-                           fullWidth
-                           error={shouldValidate && !emailValue}
-                           helperText={shouldValidate && !emailValue ? "Invalid title" : ''}
-                           onChange={(e) => setEmailValue(e.target.value)}
-                           value={titleValue}/>
-            </FormGroup>
-            <FormGroup className={classes.input}>
                 <TextField
-                    title='Password'
+                    value={emailValue}
+                    onChange={({target}) => setEmailValue(target.value)}
+                    placeholder='Enter email...'
+                    type='email'
+                    fullWidth
+                    error={!!error}
+                    className={classes.input}
+                    label="Email"
+                />
+            </FormGroup>
+            <FormGroup>
+                <TextField
+                    value={passwordValue}
+                    onChange={({target}) => setPasswordValue(target.value)}
                     fullWidth
                     type='password'
                     placeholder='Enter password...'
-                    value={passwordValue}
-                    onChange={(e) => setPasswordValue(e.target.value)}
+                    error={!!error}
+                    className={classes.input}
+                    label="Password"
                 />
             </FormGroup>
         </div>

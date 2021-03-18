@@ -3,39 +3,59 @@ import {
     Button,
     DialogActions,
     DialogContent,
-    DialogTitle,
-    FormGroup,
-    TextField,
-    Typography
+    Typography,
 } from "@material-ui/core";
 
-import useNewMovieFormStyles from "./styles";
 import Modal from "../modal";
 import LoginForm from "../login-form";
+import { useAuth } from "../../contexts/auth"
+import useLoginModalStyles from "./styles";
 
-const LoginModal = ({
-                       open,
-                       handleClose,
-                       shouldValidate,
-                       titleValue,
-                       onLogin,
-                       beforeClose
-                   }) => {
+const LoginModal = ({open, handleClose}) => {
 
-    const classes = useNewMovieFormStyles({shouldValidate, titleValue})
+    const [emailValue, setEmailValue] = useState('')
+    const [passwordValue, setPasswordValue] = useState('')
+    const [error, setError] = useState('')
+
+    const { login } = useAuth()
+
+    const classes = useLoginModalStyles()
+
+    const onLogin = async (e) => {
+        e.preventDefault()
+
+        try {
+            setError('')
+            await login(emailValue, passwordValue)
+            handleClose()
+        } catch {
+            setError("Wrong email or password")
+        }
+    }
 
     return (
         <Modal
             open={open}
             handleClose={handleClose}>
-            <DialogContent className={classes.dialog}>
-                <LoginForm />
+            <DialogContent>
+                <div className={classes.header}>
+                    <Typography variant='h6'>Login</Typography>
+                    <span>*Only registered user can add movie. Please, login.</span>
+                </div>
+                <LoginForm
+                    emailValue={emailValue}
+                    passwordValue={passwordValue}
+                    setEmailValue={setEmailValue}
+                    setPasswordValue={setPasswordValue}
+                    error={error}
+                />
+                {error && <div className={classes.error}>{error}</div>}
             </DialogContent>
             <DialogActions>
                 <Button onClick={onLogin} variant="contained" color="primary" autoFocus>
                     Login
                 </Button>
-                <Button onClick={beforeClose} variant="contained" color="default">
+                <Button onClick={handleClose} variant="contained" color="default">
                     Cancel
                 </Button>
             </DialogActions>
