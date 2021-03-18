@@ -20,7 +20,7 @@ const NewMovieForm = ({
                       }) => {
     const [imageBase64Src, setImageBase64Src] = useState('')
 
-    const classes = useNewMovieFormStyles()
+    const classes = useNewMovieFormStyles({shouldValidate, titleValue})
 
     return (
         <div className={classes.movieForm}>
@@ -33,7 +33,7 @@ const NewMovieForm = ({
             />
             <div className={classes.movieFormInputs}>
                 <FormGroup >
-                    <Typography variant='body2'>*Title: </Typography>
+                    <Typography variant='body2' className={classes.inputTitle}>*Title: </Typography>
                     <TextField placeholder='Enter movie title...'
                                type='text'
                                fullWidth
