@@ -14,20 +14,12 @@ const config = {
 
 firebase.initializeApp(config);
 
-// export const db = firebase.firestore();
-// export const storageRef = firebase.storage().ref('images');
-// export const auth = firebase.auth();
-
 class ApiService {
-    db = firebase.firestore();
-    storageRef = firebase.storage().ref('images');
-    auth = firebase.auth();
-    // constructor() {
-    //     this.db = firebase.firestore();
-    //     this.storageRef = firebase.storage().ref('images');
-    //     this.auth = firebase.auth();
-    // }
-
+    constructor() {
+        this.db = firebase.firestore();
+        this.storageRef = firebase.storage().ref('images');
+        this.auth = firebase.auth();
+    }
 
     saveMovieToDb(data) {
         this.db.collection("movies")
@@ -69,43 +61,6 @@ class ApiService {
     }
 }
 
-export default new ApiService()
+const apiService = new ApiService()
 
-// export const saveMovieToDb = (data) => {
-//     db.collection("movies")
-//         .add(data)
-//         .catch((error) => console.error("Error adding document: ", error));
-// }
-//
-// export const deleteMovieFromDb = (id) => {
-//     db.collection("movies")
-//         .doc(id)
-//         .delete()
-//         .catch((error) => console.error("Error deleting document: ", error));
-// }
-//
-// export const getMovies = async () => {
-//     try {
-//         const moviesData = []
-//         const response = await db
-//             .collection("movies")
-//             .orderBy('created', "desc")
-//             .get()
-//
-//         response.docs.forEach(doc => {
-//             moviesData.push({id: doc.id, ...doc.data()})
-//         })
-//         return moviesData
-//     } catch (e) {
-//         console.error(e)
-//     }
-// }
-//
-// export const uploadImage = async (file, fileName) => {
-//     try {
-//         return storageRef.child(fileName).put(file)
-//             .then(res => res.ref.getDownloadURL())
-//     } catch (e) {
-//         console.error(e)
-//     }
-// }
+export default apiService

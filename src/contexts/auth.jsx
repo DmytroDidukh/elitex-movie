@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from "react"
-import ApiService from "../db/db"
+import ApiService from "../db/api"
 
 const AuthContext = React.createContext()
 
@@ -22,7 +22,6 @@ export const AuthProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        console.log(ApiService)
         return ApiService.auth.onAuthStateChanged(user => {
             setCurrentUser(user)
             setLoading(false)
