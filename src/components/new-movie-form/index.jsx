@@ -1,11 +1,11 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {
     FormGroup,
     TextField,
     Typography
 } from "@material-ui/core";
 
-import ImagePlaceholder from "../../components/image-placeholder";
+import ImagePlaceholderContainer from "../../containers/image-placeholder";
 
 import useNewMovieFormStyles from "./styles";
 
@@ -18,15 +18,11 @@ const NewMovieForm = ({
                           setTitleValue,
                           setDescriptionValue
                       }) => {
-    const [imageBase64Src, setImageBase64Src] = useState('')
-
     const classes = useNewMovieFormStyles({shouldValidate, titleValue})
 
     return (
         <div className={classes.movieForm}>
-            <ImagePlaceholder
-                imageBase64Src={imageBase64Src}
-                setImageBase64Src={setImageBase64Src}
+            <ImagePlaceholderContainer
                 shouldValidate={shouldValidate}
                 imageFile={imageFile}
                 setImageFile={setImageFile}

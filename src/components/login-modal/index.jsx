@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {
     Button,
     DialogActions,
@@ -9,36 +9,26 @@ import Alert from '@material-ui/lab/Alert'
 
 import Modal from "../modal";
 import LoginForm from "../login-form";
-import { useAuth } from "../../contexts/auth"
 
 import useLoginModalStyles from "./styles";
 
-const LoginModal = ({open, handleClose}) => {
-
-    const [emailValue, setEmailValue] = useState('')
-    const [passwordValue, setPasswordValue] = useState('')
-    const [error, setError] = useState('')
-
-    const { login } = useAuth()
+const LoginModalComponent = ({
+                        modalOpen,
+                        handleModalClose,
+                        emailValue,
+                        passwordValue,
+                        setEmailValue,
+                        setPasswordValue,
+                        error,
+                        onLogin,
+                    }) => {
 
     const classes = useLoginModalStyles()
 
-    const onLogin = async (e) => {
-        e.preventDefault()
-
-        try {
-            setError('')
-            await login(emailValue, passwordValue)
-            handleClose()
-        } catch {
-            setError("Wrong email or password")
-        }
-    }
-
     return (
         <Modal
-            open={open}
-            handleClose={handleClose}>
+            open={modalOpen}
+            handleClose={handleModalClose}>
             <DialogContent>
                 <div className={classes.header}>
                     <Typography variant='h6'>Login</Typography>
@@ -60,7 +50,7 @@ const LoginModal = ({open, handleClose}) => {
                         autoFocus>
                     Login
                 </Button>
-                <Button onClick={handleClose}
+                <Button onClick={handleModalClose}
                         variant="contained"
                         color="default">
                     Cancel
@@ -70,4 +60,4 @@ const LoginModal = ({open, handleClose}) => {
     )
 }
 
-export default LoginModal;
+export default LoginModalComponent;

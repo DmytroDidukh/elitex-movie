@@ -3,8 +3,8 @@ import Button from "@material-ui/core/Button";
 import AddIcon from '@material-ui/icons/Add';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
-import NewMovieModal from "../new-movie-modal";
-import LoginModal from "../login-modal";
+import NewMovieModalContainer from "../../containers/new-movie-modal";
+import LoginModalContainer from '../../containers/login-modal'
 import {useAuth} from "../../contexts/auth"
 
 import useAppHeaderStyles from "./styles";
@@ -25,7 +25,7 @@ const AppHeader = ({setMovies}) => {
                     color="primary"
                     className={classes.button}
                     onClick={handleOpenModal}>
-                <AddIcon/>
+                {currentUser ? <AddIcon/> : <ExitToAppIcon />}
             </Button>
             {
                 currentUser ? (
@@ -36,16 +36,16 @@ const AppHeader = ({setMovies}) => {
                                 onClick={logout}>
                             <ExitToAppIcon />
                         </Button>
-                        <NewMovieModal
-                            open={isModalOpen}
-                            handleClose={handleCloseModal}
+                        <NewMovieModalContainer
+                            modalOpen={isModalOpen}
+                            handleModalClose={handleCloseModal}
                             setMovies={setMovies}
                         />
                     </>
                 ) : (
-                    <LoginModal
-                        open={isModalOpen}
-                        handleClose={handleCloseModal}
+                    <LoginModalContainer
+                        modalOpen={isModalOpen}
+                        handleModalClose={handleCloseModal}
                     />
                 )
             }

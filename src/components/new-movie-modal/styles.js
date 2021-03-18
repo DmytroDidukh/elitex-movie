@@ -1,6 +1,9 @@
 import {makeStyles} from "@material-ui/core";
 
-const useNewMovieFormStyles = makeStyles((theme) => ({
+const useNewMovieModalStyles = makeStyles((theme) => ({
+    circularProgress: {
+        margin: '100px'
+    },
     dialog: {
         minWidth: 380,
         position: 'relative',
@@ -8,13 +11,6 @@ const useNewMovieFormStyles = makeStyles((theme) => ({
             maxWidth: 300,
             minWidth: 'auto',
         }
-    },
-    movieForm: {
-        display: 'flex',
-    },
-    dialogInput: {
-        width: '100%',
-        margin: '5px 0'
     },
     closeIcon: {
         position: 'absolute',
@@ -29,4 +25,4 @@ const useNewMovieFormStyles = makeStyles((theme) => ({
     }
 }))
 
-export default useNewMovieFormStyles
+export default useNewMovieModalStyles

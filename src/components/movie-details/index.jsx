@@ -24,8 +24,7 @@ const MovieDetails = ({open, handleClose, movie, deleteMovie}) => {
             <DialogContent>
                 <MovieItem
                     movieData={movie}
-                    useStyles={useMovieItemDetailedStyles}
-                >
+                    useStyles={useMovieItemDetailedStyles}>
                     {
                         movie.description && <p>{movie.description}</p>
                     }
