@@ -1,8 +1,11 @@
-import React, {useRef, useState} from 'react'
+import React from 'react'
 
-import movieItemStyles from "./styles";
-
-const MovieItem = ({movieData, movieIndex, children, handleClick = () => {}, useStyles}) => {
+const MovieItem = ({
+                       movieData,
+                       movieIndex,
+                       children,
+                       handleClick = () => {},
+                       useStyles}) => {
     const classes = useStyles({imgSrc: movieData.image})
 
     return (

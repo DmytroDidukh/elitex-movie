@@ -1,6 +1,6 @@
 import {makeStyles} from "@material-ui/core";
 
-const useImagePlaceholderStyles = makeStyles((theme) => ({
+const useImagePlaceholderStyles = makeStyles(() => ({
     imgPlaceholder: ({imgSrc, shouldValidate}) => ({
         minWidth: 200,
         width: 200,

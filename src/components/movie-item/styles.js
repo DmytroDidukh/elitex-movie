@@ -1,6 +1,6 @@
 import {makeStyles} from "@material-ui/core";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     movieItem: {
         width: 245,
         borderRadius: 0,

@@ -33,7 +33,8 @@ const NewMovieForm = ({
             />
             <div className={classes.movieFormInputs}>
                 <FormGroup >
-                    <Typography variant='body2' className={classes.inputTitle}>*Title: </Typography>
+                    <Typography variant='body2'
+                                className={classes.inputTitle}>*Title: </Typography>
                     <TextField placeholder='Enter movie title...'
                                type='text'
                                fullWidth

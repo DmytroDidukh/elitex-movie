@@ -1,6 +1,6 @@
 import {makeStyles} from "@material-ui/core";
 
-const useNewMovieFormStyles = makeStyles((theme) => ({
+const useNewMovieFormStyles = makeStyles(() => ({
     movieForm: {
         display: 'flex',
         '@media (max-width: 768px)': {

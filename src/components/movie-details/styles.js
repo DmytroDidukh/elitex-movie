@@ -1,6 +1,6 @@
 import {makeStyles} from "@material-ui/core";
 
-export const useMovieItemDetailedStyles = makeStyles((theme) => ({
+export const useMovieItemDetailedStyles = makeStyles(() => ({
     movieItem: {
         width: '100%',
         margin: 10,

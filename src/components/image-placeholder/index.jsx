@@ -6,7 +6,7 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 import useImagePlaceholderStyles from "./styles";
 
-const ImagePlaceholder = ({imageBase64Src, setImageBase64Src, shouldValidate, imageFile, setImageFile}) => {
+const ImagePlaceholder = ({imageBase64Src, setImageBase64Src, shouldValidate, setImageFile}) => {
     const [imageLoading, setImageLoading] = useState(false)
     const inputRef = useRef(null)
 

@@ -54,10 +54,15 @@ const LoginModal = ({open, handleClose}) => {
                 {error && <Alert severity="error">{error}</Alert>}
             </DialogContent>
             <DialogActions>
-                <Button onClick={onLogin} variant="contained" color="primary" autoFocus>
+                <Button onClick={onLogin}
+                        variant="contained"
+                        color="primary"
+                        autoFocus>
                     Login
                 </Button>
-                <Button onClick={handleClose} variant="contained" color="default">
+                <Button onClick={handleClose}
+                        variant="contained"
+                        color="default">
                     Cancel
                 </Button>
             </DialogActions>

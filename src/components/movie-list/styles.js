@@ -1,6 +1,6 @@
 import {makeStyles} from "@material-ui/core";
 
-export const useMovieListStyles = makeStyles((theme) => ({
+export const useMovieListStyles = makeStyles(() => ({
     movieList: {
         width: '100%',
         display: 'flex',
@@ -9,7 +9,7 @@ export const useMovieListStyles = makeStyles((theme) => ({
     },
 }))
 
-export const useMovieItemListStyles = makeStyles((theme) => ({
+export const useMovieItemListStyles = makeStyles(() => ({
     movieItem: {
         width: 245,
         borderRadius: 0,
