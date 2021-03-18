@@ -9,7 +9,7 @@ import ClearIcon from '@material-ui/icons/Clear';
 
 import Modal from "../modal";
 import NewMovieForm from "../new-movie-form";
-import {saveMovie, uploadImage} from "../../db/api";
+import {saveMovieToDb, uploadImage} from "../../db/api";
 
 import useNewMovieFormStyles from "./styles";
 
@@ -49,7 +49,7 @@ const NewMovieModal = ({open, handleClose, setMovies}) => {
         }
 
         setMovies(prev => [newMovie, ...prev])
-        saveMovie(newMovie)
+        saveMovieToDb(newMovie)
 
         afterSubmit()
     }

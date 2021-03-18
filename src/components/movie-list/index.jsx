@@ -2,14 +2,25 @@ import React, {useState} from 'react'
 
 import MovieItem from "../movie-item";
 import MovieDetails from "../movie-details";
+import {deleteMovieFromDb} from "../../db/api";
 
 import {useMovieListStyles, useMovieItemListStyles} from "./styles";
 
-const MovieList = ({list}) => {
+
+const MovieList = ({list, setList}) => {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [selectedMovie, setSelectedMovie] = useState(0)
 
     const classes = useMovieListStyles()
+
+    const deleteMovie = (id) => {
+        if (window.confirm('Really want to delete this movie?')) {
+            const newList = list.filter(item => item.id !== id)
+            setList(newList)
+            deleteMovieFromDb(id)
+            handleCloseModal()
+        }
+    }
 
     const handleCloseModal = () => setIsModalOpen(false)
     const handleMovieItemClick = (movieIndex) => {
@@ -21,7 +32,7 @@ const MovieList = ({list}) => {
         <section className={classes.movieList}>
             {
                 list.map((item, i) => (
-                    <MovieItem key={item.title}
+                    <MovieItem key={item.id + i}
                                movieIndex={i}
                                movieData={item}
                                handleClick={handleMovieItemClick}
@@ -32,7 +43,8 @@ const MovieList = ({list}) => {
                 !!list.length &&
                 <MovieDetails open={isModalOpen}
                               handleClose={handleCloseModal}
-                              movie={list[selectedMovie]}/>
+                              movie={list[selectedMovie]}
+                              deleteMovie={deleteMovie}/>
             }
         </section>
     )

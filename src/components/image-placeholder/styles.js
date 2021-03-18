@@ -23,6 +23,9 @@ const useImagePlaceholderStyles = makeStyles((theme) => ({
             backgroundSize: 'cover',
             width: '100%',
             height: '100%'
+        },
+        '@media (max-width: 768px)': {
+            margin: '20px auto'
         }
     }),
     uploadInput: {

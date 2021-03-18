@@ -4,6 +4,10 @@ const useNewMovieFormStyles = makeStyles((theme) => ({
     dialog: {
         minWidth: 380,
         position: 'relative',
+        '@media (max-width: 450px)': {
+            maxWidth: 300,
+            minWidth: 'auto',
+        }
     },
     movieForm: {
         display: 'flex',

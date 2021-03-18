@@ -1,9 +1,16 @@
 import {db, storageRef} from "./db";
 
-export const saveMovie = (data) => {
+export const saveMovieToDb = (data) => {
     db.collection("movies")
         .add(data)
         .catch((error) => console.error("Error adding document: ", error));
+}
+
+export const deleteMovieFromDb = (id) => {
+    db.collection("movies")
+        .doc(id)
+        .delete()
+        .catch((error) => console.error("Error deleting document: ", error));
 }
 
 export const getMovies = async () => {
@@ -14,28 +21,10 @@ export const getMovies = async () => {
             .orderBy('created', "desc")
             .get()
 
-        response.docs.forEach(doc => moviesData.push(doc.data()))
+        response.docs.forEach(doc => {
+            moviesData.push({id: doc.id, ...doc.data()})
+        })
         return moviesData
-    } catch (e) {
-        console.error(e)
-    }
-}
-
-export const checkMovieExist = async (movieTitle) => {
-    try {
-        const response = await db
-            .collection("movies")
-            .where('title', '==', movieTitle)
-            .get()
-
-        if (!response.empty) {
-            const snapshot = response.docs[0];
-            const data = snapshot.data();
-            data.id = snapshot.id
-            return data
-        }
-
-        return null
     } catch (e) {
         console.error(e)
     }

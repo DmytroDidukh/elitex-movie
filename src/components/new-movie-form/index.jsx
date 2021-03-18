@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import {
     FormGroup,
     TextField,
+    Typography
 } from "@material-ui/core";
 
 import ImagePlaceholder from "../../components/image-placeholder";
@@ -30,27 +31,29 @@ const NewMovieForm = ({
                 imageFile={imageFile}
                 setImageFile={setImageFile}
             />
-            <FormGroup className={classes.movieFormInputs}>
-                <TextField label="*Title"
-                           type='text'
-                           error={shouldValidate && !titleValue}
-                           id="standard-error-helper-text"
-                           helperText={shouldValidate && !titleValue ? "Invalid title" : ''}
-                           onChange={(e) => setTitleValue(e.target.value)}
-                           value={titleValue}
-                           className={classes.input}/>
-                <TextField
-                    id="outlined-multiline-static"
-                    label="Description"
-                    multiline
-                    rows={4}
-                    placeholder='Enter description'
-                    variant="outlined"
-                    value={descriptionValue}
-                    className={classes.input}
-                    onChange={(e) => setDescriptionValue(e.target.value)}
-                />
-            </FormGroup>
+            <div className={classes.movieFormInputs}>
+                <FormGroup >
+                    <Typography variant='body2'>*Title: </Typography>
+                    <TextField placeholder='Enter movie title...'
+                               type='text'
+                               fullWidth
+                               error={shouldValidate && !titleValue}
+                               helperText={shouldValidate && !titleValue ? "Invalid title" : ''}
+                               onChange={(e) => setTitleValue(e.target.value)}
+                               value={titleValue}/>
+                </FormGroup>
+                <FormGroup className={classes.input}>
+                    <Typography variant='body2'>Description: </Typography>
+                    <TextField
+                        multiline
+                        fullWidth
+                        rows={4}
+                        placeholder='Enter movie description...'
+                        value={descriptionValue}
+                        onChange={(e) => setDescriptionValue(e.target.value)}
+                    />
+                </FormGroup>
+            </div>
         </div>
     )
 }

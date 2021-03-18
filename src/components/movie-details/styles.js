@@ -5,6 +5,9 @@ export const useMovieItemDetailedStyles = makeStyles((theme) => ({
         width: '100%',
         margin: 10,
         display: 'flex',
+        '@media (max-width: 550px)': {
+            flexDirection: 'column'
+        }
     },
     movieImage: ({imgSrc}) => ({
         width: 250,

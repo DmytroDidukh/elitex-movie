@@ -4,13 +4,15 @@ import {
     DialogActions,
     DialogContent,
 } from "@material-ui/core";
+import DeleteIcon from '@material-ui/icons/Delete';
 
 import {useMovieItemDetailedStyles} from "./styles";
 import MovieItem from "../movie-item";
 
 import Modal from "../modal";
 
-const MovieDetails = ({open, handleClose, movie}) => {
+const MovieDetails = ({open, handleClose, movie, deleteMovie}) => {
+
     return (
         <Modal
             open={open}
@@ -27,6 +29,14 @@ const MovieDetails = ({open, handleClose, movie}) => {
                 </MovieItem>
             </DialogContent>
             <DialogActions>
+                <Button
+                    variant="contained"
+                    color="secondary"
+                    startIcon={<DeleteIcon />}
+                    onClick={() => deleteMovie(movie.id)}
+                >
+                    Delete
+                </Button>
                 <Button onClick={handleClose} variant="contained" color="default">
                     Close
                 </Button>

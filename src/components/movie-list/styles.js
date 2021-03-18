@@ -4,7 +4,8 @@ export const useMovieListStyles = makeStyles((theme) => ({
     movieList: {
         width: '100%',
         display: 'flex',
-        flexWrap: 'wrap'
+        flexWrap: 'wrap',
+        justifyContent: 'center'
     },
 }))
 
@@ -20,7 +21,7 @@ export const useMovieItemListStyles = makeStyles((theme) => ({
         transition: 'transform .2s ease',
         '&:hover': {
             transform: 'scale(1.01)'
-        }
+        },
     },
     movieImage: ({imgSrc}) => ({
         height: 350,
