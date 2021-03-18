@@ -9,7 +9,7 @@ import ClearIcon from '@material-ui/icons/Clear';
 
 import Modal from "../modal";
 import NewMovieForm from "../new-movie-form";
-import {saveMovieToDb, uploadImage} from "../../db/api";
+import ApiService from "../../db/api";
 
 import useNewMovieFormStyles from "./styles";
 
@@ -40,7 +40,7 @@ const NewMovieModal = ({open, handleClose, setMovies}) => {
             return
         }
 
-        const src = await uploadImage(imageFile, imageFile.name)
+        const src = await ApiService.uploadImage(imageFile, imageFile.name)
         const newMovie = {
             title: titleValue,
             description: descriptionValue,
@@ -49,7 +49,7 @@ const NewMovieModal = ({open, handleClose, setMovies}) => {
         }
 
         setMovies(prev => [newMovie, ...prev])
-        saveMovieToDb(newMovie)
+        ApiService.saveMovieToDb(newMovie)
 
         afterSubmit()
     }

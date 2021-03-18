@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 
 import MovieItem from "../movie-item";
 import MovieDetails from "../movie-details";
-import {deleteMovieFromDb} from "../../db/api";
+import ApiService from "../../db/api";
 
 import {useMovieListStyles, useMovieItemListStyles} from "./styles";
 
@@ -17,7 +17,7 @@ const MovieList = ({list, setList}) => {
         if (window.confirm('Really want to delete this movie?')) {
             const newList = list.filter(item => item.id !== id)
             setList(newList)
-            deleteMovieFromDb(id)
+            ApiService.deleteMovieFromDb(id)
             handleCloseModal()
         }
     }

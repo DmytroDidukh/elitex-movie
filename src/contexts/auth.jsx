@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from "react"
-import {auth} from "../db/db"
+import ApiService from "../db/db"
 
 const AuthContext = React.createContext()
 
@@ -12,17 +12,18 @@ export const AuthProvider = ({ children }) => {
     const [loading, setLoading] = useState(true)
 
     const login = (email, password) => {
-        return auth.signInWithEmailAndPassword(email, password)
+        return ApiService.auth.signInWithEmailAndPassword(email, password)
     }
 
     const logout = () => {
         if (window.confirm('Logout?')) {
-            return auth.signOut()
+            return ApiService.auth.signOut()
         }
     }
 
     useEffect(() => {
-        return auth.onAuthStateChanged(user => {
+        console.log(ApiService)
+        return ApiService.auth.onAuthStateChanged(user => {
             setCurrentUser(user)
             setLoading(false)
         })

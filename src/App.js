@@ -3,7 +3,7 @@ import {CircularProgress} from "@material-ui/core";
 
 import AppHeader from "./components/app-header";
 import MovieList from "./components/movie-list";
-import {getMovies} from "./db/api";
+import ApiService from './db/api'
 
 import './App.css';
 
@@ -13,7 +13,7 @@ const App = () => {
 
     useEffect(() => {
         (async () => {
-            const movies = await getMovies()
+            const movies = await ApiService.getMovies()
             setMovies(movies)
             setListLoading(false)
         })()
