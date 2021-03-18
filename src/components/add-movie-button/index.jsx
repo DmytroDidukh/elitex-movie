@@ -4,8 +4,9 @@ import Button from "@material-ui/core/Button";
 import NewMovieModal from "../new-movie-modal";
 
 import useAddMovieBlock from "./styles";
+import LoginModal from "../login-modal";
 
-const AddMovieButton = ({setMovies}) => {
+const AddMovieButton = ({setMovies, isLogged, setIsLogged}) => {
     const classes = useAddMovieBlock()
 
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -20,11 +21,21 @@ const AddMovieButton = ({setMovies}) => {
                     onClick={handleOpenModal}>
                 Add movie
             </Button>
-            <NewMovieModal
-                open={isModalOpen}
-                handleClose={handleCloseModal}
-                setMovies={setMovies}
-            />
+            {
+                isLogged ? (
+                    <NewMovieModal
+                        open={isModalOpen}
+                        handleClose={handleCloseModal}
+                        setMovies={setMovies}
+                    />
+                ) : (
+                    <LoginModal
+                        open={isModalOpen}
+                        handleClose={handleCloseModal}
+                    />
+                )
+            }
+
         </section>
     )
 }

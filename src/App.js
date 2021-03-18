@@ -11,6 +11,7 @@ import './App.css';
 const App = () => {
     const [movies, setMovies] = useState([])
     const [listLoading, setListLoading] = useState(true)
+    const [isLogged, setIsLogged] = useState(false)
 
     useEffect(() => {
         (async () => {
@@ -22,7 +23,7 @@ const App = () => {
 
   return (
     <div className="App">
-        <AddMovieButton setMovies={setMovies}/>
+        <AddMovieButton setMovies={setMovies} isLogged={isLogged} setIsLogged={setIsLogged}/>
         {
             listLoading ? (
                 <CircularProgress className='circular-progress'/>
