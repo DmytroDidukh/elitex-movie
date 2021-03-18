@@ -10,7 +10,7 @@ const ImagePlaceholder = ({imageBase64Src, setImageBase64Src, shouldValidate, im
     const [imageLoading, setImageLoading] = useState(false)
     const inputRef = useRef(null)
 
-    const classes = useImagePlaceholderStyles({imgSrc: imageBase64Src})
+    const classes = useImagePlaceholderStyles({imgSrc: imageBase64Src, shouldValidate})
 
     const onAddImage = (e) => {
         const file = e.target.files[0]
@@ -32,7 +32,6 @@ const ImagePlaceholder = ({imageBase64Src, setImageBase64Src, shouldValidate, im
 
     return (
         <div className={classes.imgPlaceholder}
-             style={{borderColor: shouldValidate && !imageFile ? 'red' : '#d7d7d7'}}
              onClick={() => inputRef.current.click()}>
             {imageBase64Src ? (
                 imageLoading ? (

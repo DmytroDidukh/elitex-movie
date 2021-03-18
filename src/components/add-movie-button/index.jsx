@@ -1,11 +1,11 @@
 import React, {useState} from 'react'
 
 import Button from "@material-ui/core/Button";
-import NewMovieForm from "../new-movie-form";
+import NewMovieModal from "../new-movie-modal";
 
 import useAddMovieBlock from "./styles";
 
-const AddMovieBlock = ({setMovies}) => {
+const AddMovieButton = ({setMovies}) => {
     const classes = useAddMovieBlock()
 
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -14,19 +14,19 @@ const AddMovieBlock = ({setMovies}) => {
     const handleCloseModal = () => setIsModalOpen(false)
 
     return (
-        <div className={classes.addMovieBlock}>
+        <section className={classes.addMovieBlock}>
             <Button variant="contained"
                     color="primary"
                     onClick={handleOpenModal}>
                 Add movie
             </Button>
-            <NewMovieForm
+            <NewMovieModal
                 open={isModalOpen}
                 handleClose={handleCloseModal}
                 setMovies={setMovies}
             />
-        </div>
+        </section>
     )
 }
 
-export default AddMovieBlock
+export default AddMovieButton

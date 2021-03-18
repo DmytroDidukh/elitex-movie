@@ -1,27 +1,34 @@
-import React, {useRef, Fragment, useState, useEffect} from "react";
-import Button from "@material-ui/core/Button";
+import React, {useState, useEffect} from "react";
 
-import {uploadImage, saveMovie, getMovies} from "./db/api";
+import {getMovies} from "./db/api";
 import './App.css';
-import AddMovie from "./components/add-movie";
+import AddMovieButton from "./components/add-movie-button";
 import MovieList from "./components/movie-list";
+import {CircularProgress} from "@material-ui/core";
 
 const App = () => {
-
     const [movies, setMovies] = useState([])
+    const [listLoading, setListLoading] = useState(true)
 
     useEffect(() => {
         (async () => {
             const movies = await getMovies()
             setMovies(movies)
+            setListLoading(false)
         })()
     }, [])
 
 
   return (
     <div className="App">
-        <AddMovie setMovies={setMovies}/>
-        <MovieList list={movies}/>
+        <AddMovieButton setMovies={setMovies}/>
+        {
+            listLoading ? (
+                <CircularProgress className='circular-progress'/>
+            ) : (
+                <MovieList list={movies}/>
+            )
+        }
     </div>
   );
 }

@@ -1,24 +1,22 @@
-import React, {useRef, useState} from 'react'
+import React from 'react'
 import {
     Button,
     DialogActions,
     DialogContent,
 } from "@material-ui/core";
 
-import {useNewMovieFormStyles, useMovieItemDetailedStyles} from "./styles";
+import {useMovieItemDetailedStyles} from "./styles";
 import MovieItem from "../movie-item";
 
 import Modal from "../modal";
 
 const MovieDetails = ({open, handleClose, movie}) => {
-    const classes = useNewMovieFormStyles()
-
     return (
         <Modal
             open={open}
             handleClose={handleClose}
         >
-            <DialogContent className={classes.dialog}>
+            <DialogContent>
                 <MovieItem
                     movieData={movie}
                     useStyles={useMovieItemDetailedStyles}

@@ -8,12 +8,9 @@ const useNewMovieFormStyles = makeStyles((theme) => ({
     movieForm: {
         display: 'flex',
     },
-    movieFormInputs: {
-        minWidth: 400
-    },
-    input: {
+    dialogInput: {
         width: '100%',
-        margin: '10px 0'
+        margin: '5px 0'
     },
     closeIcon: {
         position: 'absolute',

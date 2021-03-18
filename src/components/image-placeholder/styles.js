@@ -1,10 +1,11 @@
 import {makeStyles} from "@material-ui/core";
 
 const useImagePlaceholderStyles = makeStyles((theme) => ({
-    imgPlaceholder: ({imgSrc}) => ({
+    imgPlaceholder: ({imgSrc, shouldValidate}) => ({
+        minWidth: 200,
         width: 200,
         height: 300,
-        backgroundColor: '#eaeaea',
+        backgroundColor: shouldValidate && !imgSrc ? '#ff000040' : '#eaeaea',
         display: 'flex',
         flexDirection: 'column',
         textAlign: 'center',
@@ -13,6 +14,9 @@ const useImagePlaceholderStyles = makeStyles((theme) => ({
         cursor: 'pointer',
         marginLeft: 0,
         marginRight: 20,
+        borderWidth: 1,
+        borderStyle: 'solid',
+        borderColor: shouldValidate && !imgSrc ? '#ff0000' : '#cdcdcd',
 
         '& > .imageBlock': {
             background: `url(${imgSrc}) center center no-repeat`,
