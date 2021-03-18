@@ -7,7 +7,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.App {
+.app {
   text-align: center;
   max-width: 1335px;
   margin: 0 auto;

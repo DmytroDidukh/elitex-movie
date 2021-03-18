@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from "react";
 import {CircularProgress} from "@material-ui/core";
 
-import AddMovieButton from "./components/add-movie-button";
+import AppHeader from "./components/app-header";
 import MovieList from "./components/movie-list";
 import {getMovies} from "./db/api";
 
@@ -19,18 +19,16 @@ const App = () => {
         })()
     }, [])
 
-  return (
-    <div className="App">
-        <AddMovieButton setMovies={setMovies}/>
-        {
-            listLoading ? (
-                <CircularProgress className='circular-progress'/>
-            ) : (
-                <MovieList list={movies} setList={setMovies}/>
-            )
-        }
-    </div>
-  );
+    if (listLoading) {
+        return <CircularProgress className='circular-progress'/>
+    }
+
+    return (
+        <div className="app">
+            <AppHeader setMovies={setMovies}/>
+            <MovieList list={movies} setList={setMovies}/>
+        </div>
+    );
 }
 
 export default App;

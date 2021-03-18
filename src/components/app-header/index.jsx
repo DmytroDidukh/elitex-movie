@@ -7,20 +7,20 @@ import NewMovieModal from "../new-movie-modal";
 import LoginModal from "../login-modal";
 import {useAuth} from "../../contexts/auth"
 
-import useAddMovieBlock from "./styles";
+import useAppHeaderStyles from "./styles";
 
-const AddMovieButton = ({setMovies}) => {
+const AppHeader = ({setMovies}) => {
     const [isModalOpen, setIsModalOpen] = useState(false)
 
     const {currentUser, logout} = useAuth()
 
-    const classes = useAddMovieBlock()
+    const classes = useAppHeaderStyles()
 
     const handleOpenModal = () => setIsModalOpen(true)
     const handleCloseModal = () => setIsModalOpen(false)
 
     return (
-        <section className={classes.addMovieBlock}>
+        <section className={classes.appHeader}>
             <Button variant="contained"
                     color="primary"
                     className={classes.button}
@@ -54,4 +54,4 @@ const AddMovieButton = ({setMovies}) => {
     )
 }
 
-export default AddMovieButton
+export default AppHeader

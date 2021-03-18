@@ -34,7 +34,7 @@ const NewMovieModal = ({open, handleClose, setMovies}) => {
         handleClose()
     }
 
-    const onSubmit = async (e) => {
+    const onSubmit = async () => {
         if (!titleValue.trim() || !imageFile) {
             setShouldValidate(true)
             return
@@ -60,7 +60,8 @@ const NewMovieModal = ({open, handleClose, setMovies}) => {
             handleClose={handleClose}
         >
             <DialogContent className={classes.dialog}>
-                <ClearIcon className={classes.closeIcon} onClick={beforeClose}/>
+                <ClearIcon className={classes.closeIcon}
+                           onClick={beforeClose}/>
                 <Typography variant="h6">Add your movie...</Typography>
                 <NewMovieForm
                     shouldValidate={shouldValidate}
@@ -73,10 +74,15 @@ const NewMovieModal = ({open, handleClose, setMovies}) => {
                 />
             </DialogContent>
             <DialogActions>
-                <Button onClick={onSubmit} variant="contained" color="primary" autoFocus>
+                <Button onClick={onSubmit}
+                        variant="contained"
+                        color="primary"
+                        autoFocus>
                     Add
                 </Button>
-                <Button onClick={beforeClose} variant="contained" color="default">
+                <Button onClick={beforeClose}
+                        variant="contained"
+                        color="default">
                     Cancel
                 </Button>
             </DialogActions>

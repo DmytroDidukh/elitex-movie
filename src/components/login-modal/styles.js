@@ -1,14 +1,6 @@
 import {makeStyles} from "@material-ui/core";
 
 const useLoginModalStyles = makeStyles(() => ({
-    error: {
-        color: "#ff0015",
-        backgroundColor: '#ffc5c56e',
-        border: '1px solid #ff0015',
-        borderRadius: 5,
-        padding: 5,
-        fontSize: '.8em'
-    },
     header: {
 
         width: 'fit-content',

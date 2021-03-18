@@ -1,7 +1,7 @@
 import {makeStyles} from "@material-ui/core";
 
-const useStyles = makeStyles((theme) => ({
-    addMovieBlock: {
+const useAppHeaderStyles = makeStyles(() => ({
+    appHeader: {
         display: 'flex',
         justifyContent: 'flex-end',
         width: '100%',
@@ -25,4 +25,4 @@ const useStyles = makeStyles((theme) => ({
     }
 }))
 
-export default useStyles
+export default useAppHeaderStyles

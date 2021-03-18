@@ -5,10 +5,12 @@ import {
     DialogContent,
     Typography,
 } from "@material-ui/core";
+import Alert from '@material-ui/lab/Alert'
 
 import Modal from "../modal";
 import LoginForm from "../login-form";
 import { useAuth } from "../../contexts/auth"
+
 import useLoginModalStyles from "./styles";
 
 const LoginModal = ({open, handleClose}) => {
@@ -49,7 +51,7 @@ const LoginModal = ({open, handleClose}) => {
                     setPasswordValue={setPasswordValue}
                     error={error}
                 />
-                {error && <div className={classes.error}>{error}</div>}
+                {error && <Alert severity="error">{error}</Alert>}
             </DialogContent>
             <DialogActions>
                 <Button onClick={onLogin} variant="contained" color="primary" autoFocus>
