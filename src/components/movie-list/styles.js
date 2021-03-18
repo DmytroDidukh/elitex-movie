@@ -2,8 +2,7 @@ import {makeStyles} from "@material-ui/core";
 
 export const useMovieListStyles = makeStyles((theme) => ({
     movieList: {
-        maxWidth: 1335,
-        margin: '0 auto',
+        width: '100%',
         display: 'flex',
         flexWrap: 'wrap'
     },
@@ -20,7 +19,7 @@ export const useMovieItemListStyles = makeStyles((theme) => ({
         cursor: 'pointer',
         transition: 'transform .2s ease',
         '&:hover': {
-            transform: 'scale(1.1)'
+            transform: 'scale(1.01)'
         }
     },
     movieImage: ({imgSrc}) => ({

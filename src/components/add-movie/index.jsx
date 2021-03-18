@@ -1,26 +1,20 @@
-import React, {Fragment, useRef, useState} from 'react'
+import React, {useState} from 'react'
 
-
-import {uploadImage} from "../../db/api";
-import uploadStyles from "./styles";
 import Button from "@material-ui/core/Button";
 import NewMovieForm from "../new-movie-form";
 
-const AddMovie = ({open, handleClose}) => {
-    const classes = uploadStyles()
+import useAddMovieBlock from "./styles";
 
-    const inputRef = useRef(null)
-    const [imgUrl, setImgUrl] = useState('')
+const AddMovieBlock = ({setMovies}) => {
+    const classes = useAddMovieBlock()
+
     const [isModalOpen, setIsModalOpen] = useState(false)
 
-    const handleOpenModal = () => {
-        //inputRef.current.click()
-        setIsModalOpen(true)
-    }
+    const handleOpenModal = () => setIsModalOpen(true)
     const handleCloseModal = () => setIsModalOpen(false)
 
     return (
-        <div>
+        <div className={classes.addMovieBlock}>
             <Button variant="contained"
                     color="primary"
                     onClick={handleOpenModal}>
@@ -29,9 +23,10 @@ const AddMovie = ({open, handleClose}) => {
             <NewMovieForm
                 open={isModalOpen}
                 handleClose={handleCloseModal}
+                setMovies={setMovies}
             />
         </div>
     )
 }
 
-export default AddMovie
+export default AddMovieBlock

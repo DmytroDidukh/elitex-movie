@@ -18,10 +18,9 @@ const App = () => {
     }, [])
 
 
-
   return (
     <div className="App">
-        <AddMovie />
+        <AddMovie setMovies={setMovies}/>
         <MovieList list={movies}/>
     </div>
   );

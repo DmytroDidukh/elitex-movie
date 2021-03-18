@@ -1,8 +1,6 @@
 import {db, storageRef} from "./db";
 
 export const saveMovie = (data) => {
-    console.log(data)
-
     db.collection("movies")
         .add(data)
         .catch((error) => console.error("Error adding document: ", error));
@@ -13,6 +11,7 @@ export const getMovies = async () => {
         const moviesData = []
         const response = await db
             .collection("movies")
+            .orderBy('created', "desc")
             .get()
 
         response.docs.forEach(doc => moviesData.push(doc.data()))

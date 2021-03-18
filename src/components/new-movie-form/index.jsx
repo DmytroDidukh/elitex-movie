@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react'
+import React, {useState} from 'react'
 import {
     Button,
     Typography,
@@ -6,46 +6,22 @@ import {
     DialogActions,
     TextField,
     DialogContent,
-    Dialog,
-    CircularProgress
 } from "@material-ui/core";
 import ClearIcon from '@material-ui/icons/Clear';
-import AddCircleIcon from '@material-ui/icons/AddCircle';
 
-import NewMovieFormStyles from "./styles";
+import useNewMovieFormStyles from "./styles";
 import {saveMovie, uploadImage} from "../../db/api";
+import Modal from "../modal";
+import ImagePlaceholder from "../image-placeholder";
 
-const NewMovieForm = ({open, handleClose}) => {
+const NewMovieForm = ({open, handleClose, setMovies}) => {
     const [imageBase64Src, setImageBase64Src] = useState('')
-    const [imageLoading, setImageLoading] = useState(false)
     const [imageFile, setImageFile] = useState(null)
     const [titleValue, setTitleValue] = useState('')
     const [descriptionValue, setDescriptionValue] = useState('')
     const [shouldValidate, setShouldValidate] = useState(false)
 
-    const inputRef = useRef(null)
-
-    const classes = NewMovieFormStyles({imgSrc: imageBase64Src})
-
-    const onAddImage = (e) => {
-        e.preventDefault()
-
-        const file = e.target.files[0]
-
-        if (file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/jpg') {
-            console.log('wrong file')
-            return
-        }
-
-        setImageLoading(true)
-        setImageFile(file)
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onloadend = () => {
-            setImageBase64Src(reader.result)
-            setImageLoading(false)
-        };
-    }
+    const classes = useNewMovieFormStyles()
 
     const handleSubmit = async () => {
         if (!titleValue.trim() || !imageFile) {
@@ -54,11 +30,15 @@ const NewMovieForm = ({open, handleClose}) => {
         }
 
         const src = await uploadImage(imageFile, imageFile.name)
-        saveMovie({
+        const newMovie = {
             title: titleValue,
             description: descriptionValue,
-            image: src
-        })
+            image: src,
+            created: Date.now()
+        }
+
+        setMovies(prev => [newMovie, ...prev])
+        saveMovie(newMovie)
 
         setShouldValidate(false)
         setTitleValue('')
@@ -69,38 +49,21 @@ const NewMovieForm = ({open, handleClose}) => {
     }
 
     return (
-        <Dialog
+        <Modal
             open={open}
-            onClose={handleClose}
-            aria-labelledby="alert-dialog-title"
-            aria-describedby="alert-dialog-description"
+            handleClose={handleClose}
         >
             <DialogContent className={classes.dialog}>
                 <ClearIcon className={classes.closeIcon} onClick={handleClose}/>
-                <Typography variant="h6">What is your movie?</Typography>
+                <Typography variant="h6">Add your movie...</Typography>
                 <div className={classes.movieForm}>
-                    <div className={classes.imgPlaceholder}
-                         style={{borderColor: shouldValidate && !imageFile ? 'red': 'black'}}
-                         onClick={() => inputRef.current.click()}>
-                        {imageBase64Src ? (
-                            imageLoading ? (
-                                <CircularProgress/>
-                            ) : (
-                                <div style={{backgroundImage: imageBase64Src}} className='imageBlock'/>
-                            )
-                        ) : (
-                            <>
-                                <AddCircleIcon/>
-                                <p>Натисніть для завантаження</p>
-                            </>
-                        )}
-                        <input
-                            className={classes.uploadInput}
-                            ref={inputRef}
-                            type='file'
-                            onChange={onAddImage}
-                        />
-                    </div>
+                    <ImagePlaceholder
+                        imageBase64Src={imageBase64Src}
+                        setImageBase64Src={setImageBase64Src}
+                        shouldValidate={shouldValidate}
+                        imageFile={imageFile}
+                        setImageFile={setImageFile}
+                    />
                     <FormGroup className={classes.dialogForm}>
                         <TextField label="*Title"
                                    type='text'
@@ -122,19 +85,16 @@ const NewMovieForm = ({open, handleClose}) => {
                         />
                     </FormGroup>
                 </div>
-
             </DialogContent>
             <DialogActions>
-                <Button onClick={handleSubmit} variant="contained" color="primary"
-                        autoFocus fullWidth>
+                <Button onClick={handleSubmit} variant="contained" color="primary" autoFocus>
                     Add
                 </Button>
-                <Button onClick={handleClose} variant="contained" color="default"
-                        autoFocus fullWidth>
+                <Button onClick={handleClose} variant="contained" color="default">
                     Cancel
                 </Button>
             </DialogActions>
-        </Dialog>
+        </Modal>
     )
 }
 
