@@ -31,8 +31,7 @@ const LoginModalComponent = ({
             handleClose={handleModalClose}>
             <DialogContent>
                 <div className={classes.header}>
-                    <Typography variant='h6'>Login</Typography>
-                    <span>*Only registered user can add movie. Please, login.</span>
+                    <Typography variant='h6'>Login</Typography>                    
                 </div>
                 <LoginForm
                     emailValue={emailValue}
